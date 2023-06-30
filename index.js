@@ -25,11 +25,12 @@ let persons = [
 
 app.get('/info', (req, res) => {
     //const len = persons.length
-    // const len = req.body.content.length
-    const timeStamp = new Date(Date.now())
-    res.send(`<p>Phonebook has info for ${len} people.</p>
-             <p>${timeStamp}</p>`)
-
+    Person.find({}).then(people =>{
+      const list = people.length
+      const timeStamp = new Date(Date.now())
+      res.send(`<p>Phonebook has info for ${list} people.</p>
+               <p>${timeStamp}</p>`)
+    })
 })
 
 app.get('/api/persons', (req, res) => {
