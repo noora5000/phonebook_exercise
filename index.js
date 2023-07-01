@@ -13,7 +13,7 @@ morgan.token('body', (req) => {
 const errorHandler = (error, req, res, next) => {
   console.error(error.message)
   if (error.name === 'CastError'){
-    return res.status(400).send({ error: 'malformatted id.'})
+    return res.status(400).send({ error: 'malformatted id.' })
   } else if (error.name === 'ValidationError') {
     return res.status(400).json({ error: error.message })
   }
@@ -40,12 +40,12 @@ const updateOrCreatePerson = (personId, { name, number }, res, next) => {
 
 // Route handler for info-page
 app.get('/info', (req, res) => {
-    Person.find({}).then(people =>{
-      const list = people.length
-      const timeStamp = new Date(Date.now())
-      res.send(`<p>Phonebook has info for ${list} people.</p>
+  Person.find({}).then(people => {
+    const list = people.length
+    const timeStamp = new Date(Date.now())
+    res.send(`<p>Phonebook has info for ${list} people.</p>
                <p>${timeStamp}</p>`)
-    })
+  })
 })
 
 // Route handler for showing all persons
@@ -84,14 +84,14 @@ app.post('/api/persons', (req, res, next) => {
         })
 
         person.save()
-        .then(savedPerson => {
-          res.json(savedPerson)
-        })
-        .catch(error => next(error))
+          .then(savedPerson => {
+            res.json(savedPerson)
+          })
+          .catch(error => next(error))
 
       } else if (existingPerson.number === number) {
-          console.log(`${existingPerson.name} already exists with the number ${existingPerson.number}`)
-          return res.status(409).json({ error: `${existingPerson.name} already exists with the number ${existingPerson.number}` })
+        console.log(`${existingPerson.name} already exists with the number ${existingPerson.number}`)
+        return res.status(409).json({ error: `${existingPerson.name} already exists with the number ${existingPerson.number}` })
       } else {
         console.log(`Updating contact info for ${name}`)
         console.log(`${existingPerson.number} -> ${number}`)
@@ -124,5 +124,5 @@ app.use(errorHandler)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
+  console.log(`Server running on port ${PORT}`)
 })
