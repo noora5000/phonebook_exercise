@@ -1,4 +1,3 @@
 # phonebook_exercise
 
-Linkki internetissä olevaan sovellukseen:
-https://phonebook-exeercise.onrender.com/
+Link: https://phonebook-exeercise.onrender.com/
